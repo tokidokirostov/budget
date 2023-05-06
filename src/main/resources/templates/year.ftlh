@@ -34,12 +34,10 @@
             <#else>
                 <h3>Товаров нет</h3>
             </#list>
-            <#--<tr><td>Одежда</td><td>${otherlimit.clothes}</td></tr>-->
         </table>
 
     </div>
+
     <div class="col-3">
-
-
     </div>
 </@t.template>

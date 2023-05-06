@@ -29,17 +29,15 @@ public class CategoryProfitController {
 
     @PostMapping()
     public String addCategoryProfit(CategoryProfitCreateDto categoryProfitCreateDto) {
-        System.out.println("Получен запрос POST /profit/category");
-        System.out.println(categoryProfitCreateDto);
+        System.out.println("Получен запрос POST /profit/category " + categoryProfitCreateDto);
         categoryProfitService.addCategoryProfit(categoryProfitCreateDto);
         return "redirect:/profit/category";
     }
 
     @PostMapping("{id}")
     public String editCategoryProfit(@PathVariable Long id,
-            CategoryProfitDto categoryProfitDto) {
-        System.out.println("Получен запрос POST /profit/category/" + id);
-        System.out.println(categoryProfitDto);
+                                     CategoryProfitDto categoryProfitDto) {
+        System.out.println("Получен запрос POST /profit/category/" + id + " " + categoryProfitDto);
         categoryProfitService.editCategoryProfit(categoryProfitDto);
         return "redirect:/profit/category";
     }
@@ -54,17 +52,15 @@ public class CategoryProfitController {
 
     @PostMapping("/vid")
     public String addVidCategoryProfit(VidCategoryProfitCreateDto vidCategoryProfitCreateDto) {
-        System.out.println("Получен запрос POST /profit/category/vid");
-        System.out.println(vidCategoryProfitCreateDto);
+        System.out.println("Получен запрос POST /profit/category/vid" + vidCategoryProfitCreateDto);
         categoryProfitService.addVidCategoryProfit(vidCategoryProfitCreateDto);
         return "redirect:/profit/category/vid";
     }
 
     @PostMapping("/vid/{id}")
     public String editVidCategoryProfit(@PathVariable Long id,
-            VidCategoryProfitDto vidCategoryProfitDto) {
-        System.out.println("Получен запрос POST /profit/category/vid/" + id);
-        System.out.println(vidCategoryProfitDto);
+                                        VidCategoryProfitDto vidCategoryProfitDto) {
+        System.out.println("Получен запрос POST /profit/category/vid/" + id + " " + vidCategoryProfitDto);
         categoryProfitService.editVidCategoryProfit(vidCategoryProfitDto);
         return "redirect:/profit/category/vid";
     }

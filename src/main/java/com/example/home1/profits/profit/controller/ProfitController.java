@@ -27,14 +27,11 @@ public class ProfitController {
 
     @GetMapping()
     public String getProfits(@RequestParam(name = "day1", required = false) String start,
-                          @RequestParam(name = "day2", required = false) String end,
-                          @RequestParam(name = "categoryProfit", required = false) String categoryProfit,
-                          @RequestParam(name = "vidCategoryProfit", required = false) String vidCategoryProfit,
-                          Model model) {
+                             @RequestParam(name = "day2", required = false) String end,
+                             @RequestParam(name = "categoryProfit", required = false) String categoryProfit,
+                             @RequestParam(name = "vidCategoryProfit", required = false) String vidCategoryProfit,
+                             Model model) {
         System.out.println("Получен запрос GET /profit");
-        System.out.println(categoryProfit);
-        System.out.println(vidCategoryProfit);
-        //LocalDate date = LocalDate.now();
         List<ProfitDto> profits = profitService.gedProfitByPeriod(start, end, categoryProfit, vidCategoryProfit);
         List<CategoryProfit> categoriesProfit = categoryProfitService.getCategoriesProfit();
         Set<String> listCategories = categoriesProfit.stream().
@@ -43,16 +40,13 @@ public class ProfitController {
         Set<String> listVidCategories = categoriesProfit.stream()
                 .map(ss -> ss.getVidCategoryProfit().getVidCategoryProfit())
                 .collect(Collectors.toSet());
-        //List<PayDto> pays = payService.gedDayByPeriod(date.toString(), date.toString());
-        //List<PayDto> pays = payService.viewPays();
         model.addAttribute("profits", profits);
         model.addAttribute("category", categoriesProfit);
         model.addAttribute("vidCategoryProfit", listVidCategories);
         model.addAttribute("listCategories", listCategories);
-        //model.addAttribute("period", periodPayService.viewPeriods());
         Integer total = profits.stream()
-                        .mapToInt(ProfitDto::getProfit)
-                                .sum();
+                .mapToInt(ProfitDto::getProfit)
+                .sum();
         model.addAttribute("total", total);
         System.out.println(listVidCategories);
         return "profits";
@@ -60,8 +54,7 @@ public class ProfitController {
 
     @PostMapping
     public String addProfit(ProfitCrateDto profitCrateDto) {
-        System.out.println("Получен запрос POST /profit");
-        System.out.println(profitCrateDto);
+        System.out.println("Получен запрос POST /profit " + profitCrateDto);
         profitService.addProfit(profitCrateDto);
         return "redirect:/profit";
     }

@@ -25,8 +25,6 @@ public class CategoryPayController {
         System.out.println("Получен запрос GET /pay/category");
         List<CategoryPay> categoryPayList = categoryPayService.getCategory();
         List<VidCategoryPay> vidCategoryPayList = categoryPayService.getCategoryVid();
-        System.out.println(categoryPayList);
-        System.out.println(vidCategoryPayList);
         model.addAttribute("categoryPayList", categoryPayList);
         model.addAttribute("vidCategoryPayList", vidCategoryPayList);
         return "category-pay";
@@ -34,9 +32,7 @@ public class CategoryPayController {
 
     @PostMapping()
     public String addCategoryPay(CategoryPayCreateDto categoryPayCreateDto) {
-        System.out.println("Получен запрос POST /pay/category");
-
-        System.out.println("111 " + categoryPayCreateDto);
+        System.out.println("Получен запрос POST /pay/category " + categoryPayCreateDto);
         categoryPayService.addCategory(categoryPayCreateDto);
         return "redirect:/pay/category";
     }
@@ -44,16 +40,14 @@ public class CategoryPayController {
     @PostMapping("{id}")
     public String editCategoryPay(@PathVariable Long id,
                                   CategoryPayDto categoryPayDto) {
-        System.out.println("Получен запрос POST /pay/category/edit");
-        System.out.println(id);
-        System.out.println("category " + categoryPayDto);
+        System.out.println("Получен запрос POST /pay/category/edit " + categoryPayDto);
         categoryPayService.editCategoryPay(categoryPayDto);
         return "redirect:/pay/category";
     }
 
     @PostMapping ("/delete")
     public String deleteCategoryPay(@RequestParam Long category) {
-        System.out.println("Удаление " + category);
+        System.out.println("Получен запрос POST /pay/delete " + category);
         //categoryService.deleteCategory(category);
         return "redirect:/pay/category";
     }
@@ -64,15 +58,13 @@ public class CategoryPayController {
     public String vievsVidCategoryPay(Model model) {
         System.out.println("Получен запрос GET /pay/category/vid");
         List<VidCategoryPay> list = categoryPayService.getCategoryVid();
-        System.out.println(list);
         model.addAttribute("list", list);
         return "vid-category-pay";
     }
 
     @PostMapping("/vid")
     public String addVidCategoryPay(VidCategoryPayCreateDto vidCategoryPayCreateDto) {
-        System.out.println("Получен запрос POST /pay/category/vid");
-        System.out.println(vidCategoryPayCreateDto);
+        System.out.println("Получен запрос POST /pay/category/vid " + vidCategoryPayCreateDto);
         categoryPayService.addVidCategoryPay(vidCategoryPayCreateDto);
         return "redirect:/pay/category/vid";
     }
@@ -80,8 +72,7 @@ public class CategoryPayController {
     @PostMapping("/vid/{id}")
     public String editVidCategoryPay(@PathVariable Long id,
             VidCategoryPayDto vidCategoryPayDto) {
-        System.out.println("Получен запрос POST /pay/category/vid/" + id);
-        System.out.println(vidCategoryPayDto);
+        System.out.println("Получен запрос POST /pay/category/vid/?" + id);
         categoryPayService.editVidCategoryPay(vidCategoryPayDto);
         return "redirect:/pay/category/vid";
     }
@@ -89,8 +80,7 @@ public class CategoryPayController {
     ///period/delete?period1=
     @PostMapping ("/vid/delete")
     public String deleteCategoryPayVid(@RequestParam Long idVidCategoryPay) {
-        System.out.println("Получен запрос POST /pay/category/vid/delete");
-        System.out.println("Удаление " + idVidCategoryPay);
+        System.out.println("Получен запрос POST /pay/category/vid/delete?period1=" + idVidCategoryPay);
         categoryPayService.deleteVidCategoryPay(idVidCategoryPay);
         return "redirect:/pay/category/vid";
     }
