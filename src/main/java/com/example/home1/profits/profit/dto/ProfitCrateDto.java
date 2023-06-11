@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data@AllArgsConstructor
 public class ProfitCrateDto {
 
-    Long id;
+    //Long id;
     Integer profit;
     Long categoryProfitId;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")

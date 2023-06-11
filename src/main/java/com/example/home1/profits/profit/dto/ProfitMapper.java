@@ -18,4 +18,11 @@ public class ProfitMapper {
     public static Profit toProfit(ProfitCrateDto profitCrateDto, CategoryProfit categoryProfit) {
         return new Profit(null, profitCrateDto.getProfit(), categoryProfit, profitCrateDto.getTimeProfit());
     }
+
+    public static Profit toProfitEdit(ProfitEditDto profitEditDto, CategoryProfit categoryProfit) {
+        return new Profit(profitEditDto.getId(),
+                profitEditDto.getProfit(),
+                categoryProfit,
+                profitEditDto.getTimeProfit());
+    }
 }

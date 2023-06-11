@@ -14,6 +14,15 @@ public class PayMapper {
         );
     }
 
+    public static Pay toPayEdit(PayEditDto payEditDto, CategoryPay categoryPay) {
+        return new Pay(
+                payEditDto.getId(),
+                payEditDto.getPay(),
+                categoryPay,
+                payEditDto.getTimePay()
+        );
+    }
+
     public static PayDto toPayDto(Pay pay) {
         return new PayDto(
                 pay.getId(),

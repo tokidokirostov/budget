@@ -1,6 +1,5 @@
 package com.example.home1.pays.pay.storage;
 
-import com.example.home1.pays.pay.dto.PayNoDateDto;
 import com.example.home1.pays.pay.model.Pay;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

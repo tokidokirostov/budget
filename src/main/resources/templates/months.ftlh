@@ -28,50 +28,43 @@
                 <td>Итого</td>
             </tr>
             <#list calcs as calc>
-
                 <tr>
                     <td>${calc.categoryPay} </td>
-                    <td> ${calc.yan} </td>
-                    <td> ${calc.fev} </td>
-                    <td>${calc.mart}</td>
-                    <td>${calc.apr}</td>
+                    <td> ${calc.january} </td>
+                    <td> ${calc.february} </td>
+                    <td>${calc.march}</td>
+                    <td>${calc.april}</td>
                     <td>${calc.may}</td>
-                    <td>${calc.yun}</td>
-                    <td>${calc.yul}</td>
-                    <td>${calc.avgu}</td>
-                    <td>${calc.sept}</td>
-                    <td>${calc.oct}</td>
-                    <td>${calc.nov}</td>
-                    <td>${calc.decb}</td>
+                    <td>${calc.june}</td>
+                    <td>${calc.july}</td>
+                    <td>${calc.august}</td>
+                    <td>${calc.september}</td>
+                    <td>${calc.october}</td>
+                    <td>${calc.november}</td>
+                    <td>${calc.december}</td>
                     <td>${calc.totall}</td>
                 </tr>
-
-
             <#else>
                 <h3>Товаров нет</h3>
             </#list>
-            <#--<tr><td>Одежда</td><td>${otherlimit.clothes}</td></tr>-->
             <tr>
                 <td>Итого</td>
-                <td>${yan}</td>
-                <td>${fev}</td>
-                <td>${mart}</td>
-                <td>${apr}</td>
-                <td>${may}</td>
-                <td>${yun}</td>
-                <td>${yul}</td>
-                <td>${avgu}</td>
-                <td>${sept}</td>
-                <td>${oct}</td>
-                <td>${nov}</td>
-                <td>${decb}</td>
-                <#--<td>${apr}</td>-->
+                <td>${months["JANUARY"]}</td>
+                <td>${months["FEBRUARY"]}</td>
+                <td>${months["MARCH"]}</td>
+                <td>${months["APRIL"]}</td>
+                <td>${months["MAY"]}</td>
+                <td>${months["JUNE"]}</td>
+                <td>${months["JULY"]}</td>
+                <td>${months["AUGUST"]}</td>
+                <td>${months["SEPTEMBER"]}</td>
+                <td>${months["OCTOBER"]}</td>
+                <td>${months["NOVEMBER"]}</td>
+                <td>${months["DECEMBER"]}</td>
             </tr>
         </table>
-
     </div>
     <div class="col-3">
-
 
     </div>
 </@t.template>

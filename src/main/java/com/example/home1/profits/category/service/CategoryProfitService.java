@@ -1,5 +1,6 @@
 package com.example.home1.profits.category.service;
 
+import com.example.home1.exception.NotFoundDataException;
 import com.example.home1.profits.category.dto.*;
 import com.example.home1.profits.category.model.CategoryProfit;
 import com.example.home1.profits.category.model.VidCategoryProfit;
@@ -25,7 +26,8 @@ public class CategoryProfitService {
     }
 
     public void addCategoryProfit(CategoryProfitCreateDto categoryProfitCreateDto) {
-        VidCategoryProfit vidCategoryProfit = vidCategoryProfitStorage.findById(categoryProfitCreateDto.getVidCategoryProfitId()).get();
+        VidCategoryProfit vidCategoryProfit = vidCategoryProfitStorage.findById(categoryProfitCreateDto.getVidCategoryProfitId())
+                .orElseThrow(() -> new NotFoundDataException("Не найден вид категории дохода"));
         categoryProfitStorage.save(CategoryProfitMapper.toCategoryProfit(
                 categoryProfitCreateDto,
                 vidCategoryProfit));
@@ -36,13 +38,15 @@ public class CategoryProfitService {
     }
 
     public void editVidCategoryProfit(VidCategoryProfitDto vidCategoryProfitDto) {
-        VidCategoryProfit vidCategoryProfit = vidCategoryProfitStorage.findById(vidCategoryProfitDto.getId()).get();
+        VidCategoryProfit vidCategoryProfit = vidCategoryProfitStorage.findById(vidCategoryProfitDto.getId())
+                .orElseThrow(() -> new NotFoundDataException("Не найден вид категории дохода"));
         vidCategoryProfit.setVidCategoryProfit(vidCategoryProfitDto.getVidCategoryProfit());
         vidCategoryProfitStorage.save(vidCategoryProfit);
     }
 
     public void editCategoryProfit(CategoryProfitDto categoryProfitDto) {
-        CategoryProfit categoryProfit = categoryProfitStorage.findById(categoryProfitDto.getId()).get();
+        CategoryProfit categoryProfit = categoryProfitStorage.findById(categoryProfitDto.getId())
+                .orElseThrow(() -> new NotFoundDataException("Не найдена категория дохода"));
         categoryProfit.setCategoryProfit(categoryProfitDto.getCategoryProfit());
         categoryProfitStorage.save(categoryProfit);
     }

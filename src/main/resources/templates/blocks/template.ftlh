@@ -166,13 +166,6 @@
                     </ul>
                 </li>
 
-                <li><a href="#">Лимиты</a>
-                    <ul>
-                        <li><a href="/limit">Лимиты</a></li>
-                        <li><a href="/pay/period">Период лимита</a></li>
-                    </ul>
-                </li>
-
                 <li><a href="#">Расчет</a>
                     <ul>
                         <li><a href="/months">По месяцам</a></li>

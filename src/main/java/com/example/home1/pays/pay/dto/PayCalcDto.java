@@ -8,18 +8,17 @@ import lombok.Data;
 public class PayCalcDto {
 
     String categoryPay;
-    Integer yan;
-    Integer fev;
-    Integer mart;
-    Integer apr;
+    Integer january;
+    Integer february;
+    Integer march;
+    Integer april;
     Integer may;
-    Integer yun;
-    Integer yul;
-    Integer avgu;
-    Integer sept;
-    Integer oct;
-    Integer nov;
-    Integer decb;
+    Integer june;
+    Integer july;
+    Integer august;
+    Integer september;
+    Integer october;
+    Integer november;
+    Integer december;
     Integer totall;
-
 }
