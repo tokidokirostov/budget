@@ -4,14 +4,12 @@ import com.example.home1.profits.category.model.CategoryProfit;
 import com.example.home1.profits.category.service.CategoryProfitService;
 import com.example.home1.profits.profit.dto.ProfitCrateDto;
 import com.example.home1.profits.profit.dto.ProfitDto;
+import com.example.home1.profits.profit.dto.ProfitEditDto;
 import com.example.home1.profits.profit.service.ProfitService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Set;
@@ -24,6 +22,20 @@ public class ProfitController {
     private final ProfitService profitService;
     private final CategoryProfitService categoryProfitService;
 
+    @GetMapping("{id}")
+    public String findProfitById(@PathVariable(name = "id") Long id,
+                                 Model model) {
+        model.addAttribute("category", categoryProfitService.getCategoriesProfit());
+        model.addAttribute("profit", profitService.findById(id));
+        return "profit-edit";
+    }
+
+    @PostMapping("/edit")
+    public String editProfit(ProfitEditDto profitEditDto) {
+        System.out.println("Получен запрос GET /edit " + profitEditDto);
+        profitService.editProfit(profitEditDto);
+        return "redirect:/profit";
+    }
 
     @GetMapping()
     public String getProfits(@RequestParam(name = "day1", required = false) String start,

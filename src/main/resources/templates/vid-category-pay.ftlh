@@ -20,7 +20,8 @@
                 <tr>
                     <td>${cat.vidCategoryPay} </td>
                     <td>
-                        <form action="/pay/category/vid/${cat.id}" method="post">
+                        <form action="/pay/category/vid/edit" method="post">
+                            <input type="number" name="id" value="${cat.id}" hidden>
                             <input type="text" name="vidCategoryPay"
                                    value="" class="form-control">
                             <input type="submit" value="Изменить"

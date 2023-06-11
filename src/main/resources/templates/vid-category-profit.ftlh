@@ -20,7 +20,8 @@
                 <tr>
                     <td>${cat.vidCategoryProfit} </td>
                     <td>
-                        <form action="/profit/category/vid/${cat.id}" method="post">
+                        <form action="/profit/category/vid/edit" method="post">
+                            <input type="number" name="id" value="${cat.id}" hidden>
                             <input type="text" name="vidCategoryProfit" value="" class="form-control">
                             <input type="submit" value="Изменить"
                                    onclick="return confirm('Вы уверены, что хотите изменить?')">

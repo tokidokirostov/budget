@@ -63,6 +63,11 @@
                     <td> ${profit.vidCategoryProfit} </td>
                     <td>${profit.timeProfit}</td>
                     <td>
+                        <form action="/profit/${profit.id}" method="get">
+                            <button type="submit">редактировать</button>
+                        </form>
+                    </td>
+                    <td>
                         <form action="/profit/delete?profitId=${profit.id}" method="post">
                             <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить?')">Удалить
                             </button>
@@ -70,7 +75,7 @@
                     </td>
                 </tr>
             <#else>
-                <h3>Товаров нет</h3>
+                <h3>Дохода нет</h3>
             </#list>
             <tr>
                 <td>Итого</td>

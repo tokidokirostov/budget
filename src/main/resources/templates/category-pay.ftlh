@@ -18,22 +18,24 @@
 
     <div class="col-3">
         <table cellspacing="2" border="1" cellpadding="5" align="center">
-            <caption>Лимиты</caption>
+            <#--<caption>Лимиты</caption>-->
             <tr>
                 <td>Категория</td>
+                <td>Изменить категория покупки</td>
                 <td>Важность</td>
             </tr>
             <#list categoryPayList as list>
                 <tr>
                     <td>${list.categoryPay} </td>
-                    <td>${list.vidCategoryPay.vidCategoryPay}</td>
                     <td>
-                        <form action="/pay/category/${list.id}" method="post">
+                        <form action="/pay/category/edit" method="post">
+                            <input type="number" name="id" value="${list.id}" hidden>
                             <input type="text" name="category" value="" class="form-control">
                             <input type="submit" value="Изменить"
                                    onclick="return confirm('Вы уверены, что хотите изменить?')">
                         </form>
                     </td>
+                    <td>${list.vidCategoryPay.vidCategoryPay}</td>
                 </tr>
             <#else>
                 <h3>Товаров нет</h3>

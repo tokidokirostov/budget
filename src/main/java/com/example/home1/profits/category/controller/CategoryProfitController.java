@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -34,10 +33,9 @@ public class CategoryProfitController {
         return "redirect:/profit/category";
     }
 
-    @PostMapping("{id}")
-    public String editCategoryProfit(@PathVariable Long id,
-                                     CategoryProfitDto categoryProfitDto) {
-        System.out.println("Получен запрос POST /profit/category/" + id + " " + categoryProfitDto);
+    @PostMapping("/edit")
+    public String editCategoryProfit(CategoryProfitDto categoryProfitDto) {
+        System.out.println("Получен запрос POST /profit/category/ " + categoryProfitDto);
         categoryProfitService.editCategoryProfit(categoryProfitDto);
         return "redirect:/profit/category";
     }
@@ -57,10 +55,9 @@ public class CategoryProfitController {
         return "redirect:/profit/category/vid";
     }
 
-    @PostMapping("/vid/{id}")
-    public String editVidCategoryProfit(@PathVariable Long id,
-                                        VidCategoryProfitDto vidCategoryProfitDto) {
-        System.out.println("Получен запрос POST /profit/category/vid/" + id + " " + vidCategoryProfitDto);
+    @PostMapping("/vid/edit")
+    public String editVidCategoryProfit(VidCategoryProfitDto vidCategoryProfitDto) {
+        System.out.println("Получен запрос POST /profit/category/vid/" + vidCategoryProfitDto);
         categoryProfitService.editVidCategoryProfit(vidCategoryProfitDto);
         return "redirect:/profit/category/vid";
     }

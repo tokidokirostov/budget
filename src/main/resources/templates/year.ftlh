@@ -35,7 +35,6 @@
                 <h3>Товаров нет</h3>
             </#list>
         </table>
-
     </div>
 
     <div class="col-3">

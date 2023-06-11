@@ -4,14 +4,12 @@ import com.example.home1.pays.category.model.CategoryPay;
 import com.example.home1.pays.category.service.CategoryPayService;
 import com.example.home1.pays.pay.dto.PayDto;
 import com.example.home1.pays.pay.dto.PayDtoCreate;
+import com.example.home1.pays.pay.dto.PayEditDto;
 import com.example.home1.pays.pay.service.PayService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Set;
@@ -24,10 +22,28 @@ public class PayController {
     private final PayService payService;
     private final CategoryPayService categoryPayService;
 
+
+    @GetMapping("/{id}")
+    public String findPayById(@PathVariable(name = "id") Long id,
+                              Model model) {
+        System.out.println("Получен запрос GET /find?id=" + id);
+        model.addAttribute("pay", payService.findById(id));
+        model.addAttribute("category", categoryPayService.getCategoryPay());
+        return "pay-edit";
+    }
+
+    @PostMapping("/edit")
+    public String editPay(PayEditDto payEditDto) {
+        System.out.println("Получен запрос GET /edit " + payEditDto);
+        payService.editPay(payEditDto);
+        return "redirect:/pay";
+    }
+
     @PostMapping()
     public String addPay(PayDtoCreate payDtoCreate) {
         System.out.println("Получен запрос POST /pay " + payDtoCreate);
         payService.addPay(payDtoCreate);
+
         return "redirect:/pay";
     }
 
@@ -38,8 +54,9 @@ public class PayController {
                           @RequestParam(name = "vidCategoryPay", required = false) String vidCategoryPay,
                           Model model) {
         System.out.println("Получен запрос GET /pay");
-        List<PayDto> pays = payService.gedDayByPeriod(start, end, categoryPay, vidCategoryPay);
-        List<CategoryPay> catList = categoryPayService.getCategory();
+        List<PayDto> pays = payService.gedPayByPeriod(start, end, categoryPay, vidCategoryPay);
+        System.out.println(pays);
+        List<CategoryPay> catList = categoryPayService.getCategoryPay();
         Set<String> categoriesPay = catList.stream()
                 .map(CategoryPay::getCategoryPay)
                 .collect(Collectors.toSet());

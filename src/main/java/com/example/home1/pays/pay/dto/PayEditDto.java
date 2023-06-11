@@ -1,4 +1,4 @@
-package com.example.home1.profits.profit.dto;
+package com.example.home1.pays.pay.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,12 +6,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
-@Data@AllArgsConstructor
-public class ProfitCrateDto {
+@Data
+@AllArgsConstructor
+public class PayEditDto {
 
-    //Long id;
-    Integer profit;
-    Long categoryProfitId;
+    Long id;
+    Long categoryId;
+    Integer pay;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
-    LocalDate timeProfit;
+    LocalDate timePay;
 }

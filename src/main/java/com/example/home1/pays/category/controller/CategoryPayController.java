@@ -4,15 +4,11 @@ import com.example.home1.pays.category.dto.CategoryPayCreateDto;
 import com.example.home1.pays.category.dto.CategoryPayDto;
 import com.example.home1.pays.category.dto.VidCategoryPayCreateDto;
 import com.example.home1.pays.category.dto.VidCategoryPayDto;
-import com.example.home1.pays.category.model.CategoryPay;
-import com.example.home1.pays.category.model.VidCategoryPay;
 import com.example.home1.pays.category.service.CategoryPayService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @AllArgsConstructor
@@ -23,23 +19,20 @@ public class CategoryPayController {
     @GetMapping()
     public String vievsCategoryPay(Model model) {
         System.out.println("Получен запрос GET /pay/category");
-        List<CategoryPay> categoryPayList = categoryPayService.getCategory();
-        List<VidCategoryPay> vidCategoryPayList = categoryPayService.getCategoryVid();
-        model.addAttribute("categoryPayList", categoryPayList);
-        model.addAttribute("vidCategoryPayList", vidCategoryPayList);
+        model.addAttribute("categoryPayList", categoryPayService.getCategoryPay());
+        model.addAttribute("vidCategoryPayList", categoryPayService.getVidCategoryPay());
         return "category-pay";
     }
 
     @PostMapping()
     public String addCategoryPay(CategoryPayCreateDto categoryPayCreateDto) {
         System.out.println("Получен запрос POST /pay/category " + categoryPayCreateDto);
-        categoryPayService.addCategory(categoryPayCreateDto);
+        categoryPayService.addCategoryPay(categoryPayCreateDto);
         return "redirect:/pay/category";
     }
 
-    @PostMapping("{id}")
-    public String editCategoryPay(@PathVariable Long id,
-                                  CategoryPayDto categoryPayDto) {
+    @PostMapping("/edit")
+    public String editCategoryPay(CategoryPayDto categoryPayDto) {
         System.out.println("Получен запрос POST /pay/category/edit " + categoryPayDto);
         categoryPayService.editCategoryPay(categoryPayDto);
         return "redirect:/pay/category";
@@ -48,7 +41,7 @@ public class CategoryPayController {
     @PostMapping ("/delete")
     public String deleteCategoryPay(@RequestParam Long category) {
         System.out.println("Получен запрос POST /pay/delete " + category);
-        //categoryService.deleteCategory(category);
+        //categoryService.deleteCategoryPay(category);
         return "redirect:/pay/category";
     }
 
@@ -57,8 +50,7 @@ public class CategoryPayController {
     @GetMapping("/vid")
     public String vievsVidCategoryPay(Model model) {
         System.out.println("Получен запрос GET /pay/category/vid");
-        List<VidCategoryPay> list = categoryPayService.getCategoryVid();
-        model.addAttribute("list", list);
+        model.addAttribute("list", categoryPayService.getVidCategoryPay());
         return "vid-category-pay";
     }
 
@@ -69,10 +61,9 @@ public class CategoryPayController {
         return "redirect:/pay/category/vid";
     }
 
-    @PostMapping("/vid/{id}")
-    public String editVidCategoryPay(@PathVariable Long id,
-            VidCategoryPayDto vidCategoryPayDto) {
-        System.out.println("Получен запрос POST /pay/category/vid/?" + id);
+    @PostMapping("/vid/edit")
+    public String editVidCategoryPay(VidCategoryPayDto vidCategoryPayDto) {
+        System.out.println("Получен запрос POST /pay/category/vid/edit " + vidCategoryPayDto);
         categoryPayService.editVidCategoryPay(vidCategoryPayDto);
         return "redirect:/pay/category/vid";
     }

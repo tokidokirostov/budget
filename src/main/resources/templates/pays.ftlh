@@ -64,6 +64,11 @@
                     <td> ${pay.vidCategoryPay} </td>
                     <td>${pay.timePay}</td>
                     <td>
+                        <form action="/pay/${pay.id}" method="get">
+                            <button type="submit">редактировать</button>
+                        </form>
+                    </td>
+                    <td>
                         <form action="/pay/delete?payId=${pay.id}" method="post">
                             <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить?')">Удалить
                             </button>
@@ -72,7 +77,7 @@
                 </tr>
 
             <#else>
-                <h3>Товаров нет</h3>
+                <h3>Покупок нет</h3>
             </#list>
             <tr>
                 <td>Итого</td>
@@ -80,7 +85,6 @@
             </tr>
         </table>
         <br><br>
-
     </div>
 
 </@t.template>

@@ -1,5 +1,6 @@
 package com.example.home1.pays.category.service;
 
+import com.example.home1.exception.NotFoundDataException;
 import com.example.home1.pays.category.dto.*;
 import com.example.home1.pays.category.model.CategoryPay;
 import com.example.home1.pays.category.model.VidCategoryPay;
@@ -16,20 +17,23 @@ public class CategoryPayService {
     private final CategoryPayStorage categoryPayStorage;
     private final VidCategoryPayStorage vidCategoryPayStorage;
 
-    public List<CategoryPay> getCategory() {
+    public List<CategoryPay> getCategoryPay() {
         return categoryPayStorage.findAll();
     }
 
-    public void addCategory(CategoryPayCreateDto categoryPayCreateDto) {
-        VidCategoryPay vidCategoryPay = vidCategoryPayStorage.findById(categoryPayCreateDto.getIdVidCategoryPay()).get();
+    public void addCategoryPay(CategoryPayCreateDto categoryPayCreateDto) {
+        System.out.println(categoryPayCreateDto);
+        VidCategoryPay vidCategoryPay = vidCategoryPayStorage.findById(categoryPayCreateDto.getIdVidCategoryPay())
+                .orElseThrow(() -> new NotFoundDataException("Не найден вид категории покупки"));
+
         categoryPayStorage.save(CategoryPayMapper.toCategoryPay(categoryPayCreateDto, vidCategoryPay));
     }
 
-    public void deleteCategory(Long category) {
+    public void deleteCategoryPay(Long category) {
         categoryPayStorage.deleteById(category);
     }
 
-    public List<VidCategoryPay> getCategoryVid() {
+    public List<VidCategoryPay> getVidCategoryPay() {
         return vidCategoryPayStorage.findAll();
     }
 
@@ -42,13 +46,15 @@ public class CategoryPayService {
     }
 
     public void editCategoryPay(CategoryPayDto categoryPayDto) {
-        CategoryPay categoryPay = categoryPayStorage.findById(categoryPayDto.getId()).get();
+        CategoryPay categoryPay = categoryPayStorage.findById(categoryPayDto.getId())
+                .orElseThrow(() -> new NotFoundDataException("Не найдена категория покупки"));
         categoryPay.setCategoryPay(categoryPayDto.getCategory());
         categoryPayStorage.save(categoryPay);
     }
 
     public void editVidCategoryPay(VidCategoryPayDto vidCategoryPayDto) {
-        VidCategoryPay vidCategoryPay = vidCategoryPayStorage.findById(vidCategoryPayDto.getId()).get();
+        VidCategoryPay vidCategoryPay = vidCategoryPayStorage.findById(vidCategoryPayDto.getId())
+                .orElseThrow(() -> new NotFoundDataException("Не найден вид категории покупки"));
         vidCategoryPay.setVidCategoryPay(vidCategoryPayDto.getVidCategoryPay());
         vidCategoryPayStorage.save(vidCategoryPay);
     }
